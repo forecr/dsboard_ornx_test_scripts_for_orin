@@ -95,6 +95,7 @@ function test_menu {
 		echo "14) Digital Out Test"
 		echo "15) Digital In-0 Test"
 		echo "16) Digital In-1 Test"
+		echo "17) Power LED Test"
 		read -p "Type the test number (or quit) [1/.../q]: " choice
 		echo ""
 
@@ -178,6 +179,10 @@ function test_menu {
 			16 )
 				echo "Digital In-1 Test"
 				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_digital_in1_orin_nx.sh
+				;;
+			17 )
+				echo "Power LED Test"
+				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_power_led_orin_nx.sh
 				;;
 			[Qq]* )
 				echo "Quitting ..."
