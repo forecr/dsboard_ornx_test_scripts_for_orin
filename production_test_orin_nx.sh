@@ -140,6 +140,10 @@ function test_menu {
 				gnome-terminal -- $SCRIPTS_FOLDER/test_csi_1_orin_nx.sh
 				sleep 2
 				gnome-terminal -- $SCRIPTS_FOLDER/test_csi_2_orin_nx.sh
+				sleep 2
+				gnome-terminal -- $SCRIPTS_FOLDER/test_csi_3_orin_nx.sh
+				sleep 2
+				gnome-terminal -- $SCRIPTS_FOLDER/test_csi_4_orin_nx.sh
 				;;
 			8 )
 				echo "M.2 Key-E Test"
