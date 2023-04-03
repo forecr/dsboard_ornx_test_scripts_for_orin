@@ -101,8 +101,13 @@ function test_menu {
 
 		case $choice in
 			1 ) 
-				echo "* Set the device in recovery mode, connect recovery USB and check the device in recovery mode with lsusb (0955:7323)"
-				echo "* Reset the device, connect Debug port and check the serial connection"
+				echo "* Check The power button"
+				echo "* Set the device in recovery mode, connect recovery USB and check the device in recovery mode with lsusb"
+				echo "*     0955:7323 for Orin NX 16GB"
+				echo "*     0955:7423 for Orin NX 8GB"
+				echo "*     0955:7523 for Orin Nano 8GB"
+				echo "*     0955:7623 for Orin Nano 4GB"
+				echo "* Reset the device, connect Debug USB and check the serial connection"
 				;;
 			2 )
 				echo "Check M.2 SSD detected"
@@ -137,13 +142,13 @@ function test_menu {
 				;;
 			7 )
 				echo "CSI Test"
-				gnome-terminal -- $SCRIPTS_FOLDER/test_csi_1_orin_nx.sh
+				gnome-terminal -- $SCRIPTS_FOLDER/test_csi_1_orin.sh
 				sleep 2
-				gnome-terminal -- $SCRIPTS_FOLDER/test_csi_2_orin_nx.sh
+				gnome-terminal -- $SCRIPTS_FOLDER/test_csi_2_orin.sh
 				sleep 2
-				gnome-terminal -- $SCRIPTS_FOLDER/test_csi_3_orin_nx.sh
+				gnome-terminal -- $SCRIPTS_FOLDER/test_csi_3_orin.sh
 				sleep 2
-				gnome-terminal -- $SCRIPTS_FOLDER/test_csi_4_orin_nx.sh
+				gnome-terminal -- $SCRIPTS_FOLDER/test_csi_4_orin.sh
 				;;
 			8 )
 				echo "M.2 Key-E Test"
@@ -152,7 +157,7 @@ function test_menu {
 				;;
 			9 )
 				echo "M.2 Key-B Test"
-				gnome-terminal -- $SCRIPTS_FOLDER/test_key_b_orin_nx.sh
+				gnome-terminal -- $SCRIPTS_FOLDER/test_key_b_orin.sh
 				;;
 			10 )
 				echo "RS232 Test"
@@ -166,27 +171,27 @@ function test_menu {
 				;;
 			12 )
 				echo "CANBus Transmit Test"
-				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_can_transmit_orin_nx.sh
+				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_can_transmit_orin.sh
 				;;
 			13 )
 				echo "CANBus Receive Test"
-				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_can_receive_orin_nx.sh
+				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_can_receive_orin.sh
 				;;
 			14 )
 				echo "Digital Out Test"
-				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_digital_out_multi_orin_nx.sh
+				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_digital_out_multi_orin.sh
 				;;
 			15 )
 				echo "Digital In-0 Test"
-				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_digital_in0_orin_nx.sh
+				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_digital_in0_orin.sh
 				;;
 			16 )
 				echo "Digital In-1 Test"
-				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_digital_in1_orin_nx.sh
+				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_digital_in1_orin.sh
 				;;
 			17 )
 				echo "Power LED Test"
-				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_power_led_orin_nx.sh
+				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_power_led_orin.sh
 				;;
 			[Qq]* )
 				echo "Quitting ..."
