@@ -96,6 +96,7 @@ function test_menu {
 		echo "15) Digital In-0 Test"
 		echo "16) Digital In-1 Test"
 		echo "17) Power LED Test"
+		echo "18) Temperature Sensor Test"
 		read -p "Type the test number (or quit) [1/.../q]: " choice
 		echo ""
 
@@ -192,6 +193,14 @@ function test_menu {
 			17 )
 				echo "Power LED Test"
 				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_power_led_orin.sh
+				;;
+			18 )
+				echo "Temperature Sensor Test"
+				if [ -d "/sys/bus/i2c/devices/0-0049" ]; then
+					gnome-terminal -- watch -n 0.1 cat /sys/bus/i2c/devices/0-0049/hwmon/hwmon1/temp1_input
+				else
+					echo "Temperature Sensor could not found"
+				fi
 				;;
 			[Qq]* )
 				echo "Quitting ..."
