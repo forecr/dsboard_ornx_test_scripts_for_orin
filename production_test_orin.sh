@@ -153,7 +153,7 @@ function test_menu {
 				;;
 			8 )
 				echo "M.2 Key-E Test"
-				#gnome-terminal -- watch -n 0.1 lsusb #Bluetooth not supported
+				gnome-terminal -- $SCRIPTS_FOLDER/test_key_e_orin.sh
 				gnome-terminal -- watch -n 0.1 lspci
 				;;
 			9 )
