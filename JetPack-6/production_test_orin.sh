@@ -59,6 +59,9 @@ apt_install_pkg 'gtkterm'
 # Check gpiod installed
 apt_install_pkg 'gpiod'
 
+# Check nvidia-l4t-gstreamer installed for CSI tests
+apt_install_pkg 'nvidia-l4t-gstreamer'
+
 
 function check_nvgetty_service {
 	echo -n "nvgetty.service status: "
