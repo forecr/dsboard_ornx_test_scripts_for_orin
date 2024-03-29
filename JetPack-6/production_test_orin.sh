@@ -151,13 +151,13 @@ function test_menu {
 				;;
 			7 )
 				echo "CSI Test"
-				gnome-terminal -- $SCRIPTS_FOLDER/test_csi_1_orin.sh
+				gnome-terminal -- $SCRIPTS_FOLDER/test_csi0_orin.sh
 				sleep 2
-				gnome-terminal -- $SCRIPTS_FOLDER/test_csi_2_orin.sh
+				gnome-terminal -- $SCRIPTS_FOLDER/test_csi1_orin.sh
 				sleep 2
-				gnome-terminal -- $SCRIPTS_FOLDER/test_csi_3_orin.sh
+				gnome-terminal -- $SCRIPTS_FOLDER/test_csi2_orin.sh
 				sleep 2
-				gnome-terminal -- $SCRIPTS_FOLDER/test_csi_4_orin.sh
+				gnome-terminal -- $SCRIPTS_FOLDER/test_csi3_orin.sh
 				;;
 			8 )
 				echo "M.2 Key-E Test"
