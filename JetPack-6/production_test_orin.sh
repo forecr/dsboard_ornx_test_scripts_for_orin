@@ -174,12 +174,12 @@ function test_menu {
 			10 )
 				echo "RS232 Test"
 				check_nvgetty_service
-				sudo gnome-terminal -- sudo gtkterm -p /dev/ttyTHS1 -s 115200
+				sudo gnome-terminal -- sudo gtkterm -p /dev/ttyTHS3 -s 115200
 				;;
 			11 )
 				echo "RS422 Test"
 				check_nvgetty_service
-				sudo gnome-terminal -- sudo gtkterm -p /dev/ttyTHS3 -s 115200
+				sudo gnome-terminal -- sudo gtkterm -p /dev/ttyTHS1 -s 115200
 				;;
 			12 )
 				echo "CANBus Transmit Test"
