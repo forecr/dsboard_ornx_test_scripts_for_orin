@@ -31,6 +31,22 @@ else
 	exit 1
 fi
 
+function csi_overlay_check {
+	OVERLAY_CHECK=$(cat /boot/extlinux/extlinux.conf | grep -n "OVERLAYS /boot/tegra234-p3767-camera-dsboard-ornx-imx219.dtbo" | wc -l)
+
+	if [[ $OVERLAY_CHECK -ne 0 ]]; then
+		echo "CSI config already included"
+	else
+		echo "Including CSI config"
+		sudo /opt/nvidia/jetson-io/config-by-hardware.py -n 2="DSBOARD-ORNX IMX219 4*2-lane"
+		echo "Done, rebooting now ..."
+		sleep 10
+		sudo reboot
+	fi
+
+	unset OVERLAY_CHECK
+}
+
 function apt_install_pkg {
 	REQUIRED_PKG=$1
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $REQUIRED_PKG|grep "install ok installed")
@@ -154,6 +170,7 @@ function test_menu {
 				;;
 			7 )
 				echo "CSI Test"
+				csi_overlay_check
 				gnome-terminal -- $SCRIPTS_FOLDER/test_csi0_orin.sh
 				sleep 2
 				gnome-terminal -- $SCRIPTS_FOLDER/test_csi1_orin.sh
