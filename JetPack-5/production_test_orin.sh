@@ -69,9 +69,8 @@ function check_nvgetty_service {
 	elif [ "$(systemctl is-enabled nvgetty.service)" = "disabled" ]; then
 		echo "disabled"
 	else 
-		echo "ERROR"
 		echo "Failed to get unit file state -> No such file or directory"
-		exit 1
+		echo "Skipping..."
 	fi
 }
 
