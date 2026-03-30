@@ -6,7 +6,7 @@ if [ "$(whoami)" != "root" ] ; then
 fi
 
 # Check the scipts' folder
-SCRIPTS_FOLDER=${PWD}
+SCRIPTS_FOLDER=$(dirname $(realpath $0))
 if [ $# -eq 1 ]; then
 	SCRIPTS_FOLDER=$1
 fi
