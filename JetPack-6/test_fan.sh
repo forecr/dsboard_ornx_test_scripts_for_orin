@@ -10,7 +10,7 @@ function find_pwmfan_path {
 	for hwmon_name in $(ls /sys/class/hwmon/hwmon*/name); do
 		if [[ $(cat $hwmon_name) == "pwmfan" ]]; then
 			hwmon_path=$(dirname $hwmon_name)
-			PWM_FAN_PATH=$(ls -1t $hwmon_path/pwm* | head -1)
+			PWM_FAN_PATH=$(ls -1t $hwmon_path/pwm? | head -1)
 		fi
 	done
 
