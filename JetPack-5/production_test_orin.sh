@@ -5,8 +5,11 @@ if [ "$(whoami)" != "root" ] ; then
 	exit 1
 fi
 
+# Check the board revision
+NEW_TEMP_SENSOR=true # for using rev-2.0 or new
+
 # Check the scipts' folder
-SCRIPTS_FOLDER=${PWD}
+SCRIPTS_FOLDER=$(dirname $(realpath $0))
 if [ $# -eq 1 ]; then
 	SCRIPTS_FOLDER=$1
 fi
@@ -62,7 +65,7 @@ apt_install_pkg 'lm-sensors'
 
 function check_nvgetty_service {
 	echo -n "nvgetty.service status: "
-	if [ "$(systemctl is-enabled nvgetty.service)" = "enabled" ]; then 
+	if [ "$(systemctl is-enabled nvgetty.service)" = "enabled" ]; then
 		echo "enabled"
 		sleep 2
 		sudo systemctl disable nvgetty.service
@@ -71,7 +74,7 @@ function check_nvgetty_service {
 		sudo reboot
 	elif [ "$(systemctl is-enabled nvgetty.service)" = "disabled" ]; then
 		echo "disabled"
-	else 
+	else
 		echo "Failed to get unit file state -> No such file or directory"
 		echo "Skipping..."
 	fi
@@ -93,8 +96,8 @@ function test_menu {
 		echo "5) Public Network Test (ping)"
 		echo "6) USB Test"
 		echo "7) CSI Test"
-		echo "8) M.2 Key-E Test" 
-		echo "9) M.2 Key-B Test" 
+		echo "8) M.2 Key-E Test"
+		echo "9) M.2 Key-B Test"
 		echo "10) RS-232 Test"
 		echo "11) RS-422 Test"
 		echo "12) CAN Bus (Transmit) Test"
@@ -103,7 +106,11 @@ function test_menu {
 		echo "15) Digital In-0 Test"
 		echo "16) Digital In-1 Test"
 		echo "17) Power LED Test"
-		echo "18) Temperature Sensor Test"
+		if $NEW_TEMP_SENSOR; then
+			echo "18) 6-AXIS IMU & Temperature Sensor Test"
+		else
+			echo "18) Temperature Sensor Test"
+		fi
 		echo "19) Fan Test"
 		read -p "Type the test number (or quit) [1/.../q]: " choice
 		echo ""
@@ -203,8 +210,13 @@ function test_menu {
 				sudo gnome-terminal -- $SCRIPTS_FOLDER/test_power_led_orin.sh
 				;;
 			18 )
-				echo "Temperature Sensor Test"
-				sudo gnome-terminal -- watch -n 0.1 sensors tmp102-*
+				if $NEW_TEMP_SENSOR; then
+					echo "6-AXIS IMU & Temperature Sensor Test"
+					sudo gnome-terminal -- $SCRIPTS_FOLDER/test_wsen_isds_imu.sh -i 0.1
+				else
+					echo "Temperature Sensor Test"
+					sudo gnome-terminal -- watch -n 0.1 sensors tmp102-*
+				fi
 				;;
 			19 )
 				echo "Fan Test"
